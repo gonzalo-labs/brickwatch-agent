@@ -1,0 +1,919 @@
+{
+  "version": "36.0.0",
+  "artifacts": {
+    "RITAIam.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "RITAIam.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "RITAIam": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://542508027791/eu-central-1",
+      "properties": {
+        "templateFile": "RITAIam.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::542508027791:role/cdk-hnb659fds-deploy-role-542508027791-eu-central-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::542508027791:role/cdk-hnb659fds-cfn-exec-role-542508027791-eu-central-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-542508027791-eu-central-1/a00a845389016d3ad52bfab1002f4dee7f60c1b0dc7c405fec173d4660217ee2.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "RITAIam.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::542508027791:role/cdk-hnb659fds-lookup-role-542508027791-eu-central-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "RITAIam.assets"
+      ],
+      "metadata": {
+        "/RITAIam/RITAExecutorRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAExecutorRole9BA8CFFF"
+          }
+        ],
+        "/RITAIam/RITAExecutorRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAExecutorRoleDefaultPolicy548072F2"
+          }
+        ],
+        "/RITAIam/RITAReadOnlyRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAReadOnlyRole45AABC22"
+          }
+        ],
+        "/RITAIam/RITAReadOnlyRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAReadOnlyRoleDefaultPolicy5111EBA3"
+          }
+        ],
+        "/RITAIam/ExecutorRoleArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExecutorRoleArn"
+          }
+        ],
+        "/RITAIam/ReadOnlyRoleArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ReadOnlyRoleArn"
+          }
+        ],
+        "/RITAIam/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/RITAIam/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/RITAIam/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "RITAIam"
+    },
+    "RITAApi.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "RITAApi.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "RITAApi": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://542508027791/eu-central-1",
+      "properties": {
+        "templateFile": "RITAApi.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::542508027791:role/cdk-hnb659fds-deploy-role-542508027791-eu-central-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::542508027791:role/cdk-hnb659fds-cfn-exec-role-542508027791-eu-central-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-542508027791-eu-central-1/4121d60ce09f0657695f9c735772cef7ef610c03ab03ea28adf73c39a9dda45b.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "RITAApi.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::542508027791:role/cdk-hnb659fds-lookup-role-542508027791-eu-central-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "RITAApi.assets"
+      ],
+      "metadata": {
+        "/RITAApi/ApiLambdaRepo/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiLambdaRepoCAEE321E"
+          }
+        ],
+        "/RITAApi/ApiImageBuild/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiImageBuildRole27E7F2D7"
+          }
+        ],
+        "/RITAApi/ApiImageBuild/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiImageBuildRoleDefaultPolicy78F89BAC"
+          }
+        ],
+        "/RITAApi/ApiImageBuild/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiImageBuild53994DE8"
+          }
+        ],
+        "/RITAApi/ApiImageBuildTrigger/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiImageBuildTriggerServiceRoleDC7DB6B5"
+          }
+        ],
+        "/RITAApi/ApiImageBuildTrigger/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiImageBuildTriggerServiceRoleDefaultPolicyB25EB8C7"
+          }
+        ],
+        "/RITAApi/ApiImageBuildTrigger/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiImageBuildTrigger9F9BDF25"
+          }
+        ],
+        "/RITAApi/ApiImageBuildProvider/framework-onEvent/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiImageBuildProviderframeworkonEventServiceRole1C5CF09D"
+          }
+        ],
+        "/RITAApi/ApiImageBuildProvider/framework-onEvent/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiImageBuildProviderframeworkonEventServiceRoleDefaultPolicyA090CBE0"
+          }
+        ],
+        "/RITAApi/ApiImageBuildProvider/framework-onEvent/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiImageBuildProviderframeworkonEventDD7F66DB"
+          }
+        ],
+        "/RITAApi/BuildApiImage/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BuildApiImage"
+          }
+        ],
+        "/RITAApi/RITAApiFn/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiFnServiceRoleECB85610"
+          }
+        ],
+        "/RITAApi/RITAApiFn/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiFnServiceRoleDefaultPolicy40869C66"
+          }
+        ],
+        "/RITAApi/RITAApiFn/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiFn455ED49C"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGateway5FE42108"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/CloudWatchRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayCloudWatchRole14775921"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Account": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayAccount8781CA17"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Deployment/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayDeployment47B42072a8d5c9a68a283ca09b76f94f2bce053c"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/DeploymentStage.prod/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayDeploymentStageprod7E03EB91"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Endpoint": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayEndpointE30FDE27"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv18DD59987"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/chat/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1chat19125C91"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/chat/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1chatOPTIONS288C1EE6"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/chat/POST/ApiPermission.RITAApiRITAApiGateway6E112C5C.POST..v1.chat": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1chatPOSTApiPermissionRITAApiRITAApiGateway6E112C5CPOSTv1chat0A11E0AA"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/chat/POST/ApiPermission.Test.RITAApiRITAApiGateway6E112C5C.POST..v1.chat": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1chatPOSTApiPermissionTestRITAApiRITAApiGateway6E112C5CPOSTv1chatA1A2BB2F"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/chat/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1chatPOSTD23135A5"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/analyze/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1analyze471F6DED"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/analyze/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1analyzeOPTIONS73848AA7"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/analyze/GET/ApiPermission.RITAApiRITAApiGateway6E112C5C.GET..v1.analyze": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1analyzeGETApiPermissionRITAApiRITAApiGateway6E112C5CGETv1analyze061107D4"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/analyze/GET/ApiPermission.Test.RITAApiRITAApiGateway6E112C5C.GET..v1.analyze": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1analyzeGETApiPermissionTestRITAApiRITAApiGateway6E112C5CGETv1analyze08EF947A"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/analyze/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1analyzeGET6F42871E"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/recommend/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1recommend5F0401FC"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/recommend/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1recommendOPTIONSAA5A0518"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/recommend/GET/ApiPermission.RITAApiRITAApiGateway6E112C5C.GET..v1.recommend": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1recommendGETApiPermissionRITAApiRITAApiGateway6E112C5CGETv1recommend15F919ED"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/recommend/GET/ApiPermission.Test.RITAApiRITAApiGateway6E112C5C.GET..v1.recommend": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1recommendGETApiPermissionTestRITAApiRITAApiGateway6E112C5CGETv1recommend1EF87310"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/recommend/GET/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1recommendGETDF983FC8"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/automation/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1automation4AD26F7A"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/automation/OPTIONS/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1automationOPTIONSE307FF15"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/automation/POST/ApiPermission.RITAApiRITAApiGateway6E112C5C.POST..v1.automation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1automationPOSTApiPermissionRITAApiRITAApiGateway6E112C5CPOSTv1automation1C1A32CF"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/automation/POST/ApiPermission.Test.RITAApiRITAApiGateway6E112C5C.POST..v1.automation": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1automationPOSTApiPermissionTestRITAApiRITAApiGateway6E112C5CPOSTv1automation47015C3A"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/v1/automation/POST/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayv1automationPOSTE2EB89B7"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/{proxy+}/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayproxyF913D4CA"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/{proxy+}/ANY/ApiPermission.RITAApiRITAApiGateway6E112C5C.ANY..{proxy+}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayproxyANYApiPermissionRITAApiRITAApiGateway6E112C5CANYproxy5CDC2D20"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/{proxy+}/ANY/ApiPermission.Test.RITAApiRITAApiGateway6E112C5C.ANY..{proxy+}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayproxyANYApiPermissionTestRITAApiRITAApiGateway6E112C5CANYproxyE492E4CA"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/{proxy+}/ANY/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayproxyANYD62D7763"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/ANY/ApiPermission.RITAApiRITAApiGateway6E112C5C.ANY..": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayANYApiPermissionRITAApiRITAApiGateway6E112C5CANY0F030760"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/ANY/ApiPermission.Test.RITAApiRITAApiGateway6E112C5C.ANY..": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayANYApiPermissionTestRITAApiRITAApiGateway6E112C5CANY5698C25B"
+          }
+        ],
+        "/RITAApi/RITAApiGateway/Default/ANY/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiGatewayANY4B40224D"
+          }
+        ],
+        "/RITAApi/RITAApiKey/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAApiKey59D165EB"
+          }
+        ],
+        "/RITAApi/RITAUsagePlan/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAUsagePlanE2747DE0"
+          }
+        ],
+        "/RITAApi/RITAUsagePlan/UsagePlanKeyResource:RITAApiRITAApiKey2D2B9DD2": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAUsagePlanUsagePlanKeyResourceRITAApiRITAApiKey2D2B9DD20C562554"
+          }
+        ],
+        "/RITAApi/ApiUrl": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiUrl"
+          }
+        ],
+        "/RITAApi/ApiKey": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ApiKey"
+          }
+        ],
+        "/RITAApi/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/RITAApi/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/RITAApi/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "RITAApi"
+    },
+    "RITAAgentCore.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "RITAAgentCore.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "RITAAgentCore": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://542508027791/eu-central-1",
+      "properties": {
+        "templateFile": "RITAAgentCore.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::542508027791:role/cdk-hnb659fds-deploy-role-542508027791-eu-central-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::542508027791:role/cdk-hnb659fds-cfn-exec-role-542508027791-eu-central-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-542508027791-eu-central-1/940c17a9e5fcc0fc6aa43fd931d4572aca3d6facb37e1e29540691a40bcd3d78.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "RITAAgentCore.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::542508027791:role/cdk-hnb659fds-lookup-role-542508027791-eu-central-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "RITAApi",
+        "RITAAgentCore.assets"
+      ],
+      "metadata": {
+        "/RITAAgentCore/RITAAgentCoreRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAAgentCoreRoleC55009A6"
+          }
+        ],
+        "/RITAAgentCore/RITAAgentCoreRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAAgentCoreRoleDefaultPolicy15653478"
+          }
+        ],
+        "/RITAAgentCore/AgentCoreProvisionerFn/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentCoreProvisionerFnServiceRole9D988185"
+          }
+        ],
+        "/RITAAgentCore/AgentCoreProvisionerFn/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentCoreProvisionerFnServiceRoleDefaultPolicy547FE586"
+          }
+        ],
+        "/RITAAgentCore/AgentCoreProvisionerFn/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentCoreProvisionerFn186D4095"
+          }
+        ],
+        "/RITAAgentCore/AgentCoreRuntimeRepo/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentCoreRuntimeRepo8E7ED701"
+          }
+        ],
+        "/RITAAgentCore/AgentCoreProvider/framework-onEvent/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentCoreProviderframeworkonEventServiceRoleD38C2E62"
+          }
+        ],
+        "/RITAAgentCore/AgentCoreProvider/framework-onEvent/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentCoreProviderframeworkonEventServiceRoleDefaultPolicyE3EC5B07"
+          }
+        ],
+        "/RITAAgentCore/AgentCoreProvider/framework-onEvent/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentCoreProviderframeworkonEventDBBA6C09"
+          }
+        ],
+        "/RITAAgentCore/AgentCoreRuntimeBuild/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentCoreRuntimeBuildRoleC0423E9F"
+          }
+        ],
+        "/RITAAgentCore/AgentCoreRuntimeBuild/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentCoreRuntimeBuildRoleDefaultPolicy62A072E8"
+          }
+        ],
+        "/RITAAgentCore/AgentCoreRuntimeBuild/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentCoreRuntimeBuild34A1C5A6"
+          }
+        ],
+        "/RITAAgentCore/RITAUserPool/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAUserPool9382A62A"
+          }
+        ],
+        "/RITAAgentCore/RITAUserPool/RITACognitoDomain/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAUserPoolRITACognitoDomainB83BD9B0"
+          }
+        ],
+        "/RITAAgentCore/RITAUserPoolClient/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RITAUserPoolClientA4D7BD72"
+          }
+        ],
+        "/RITAAgentCore/AgentCoreResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentCoreResource"
+          }
+        ],
+        "/RITAAgentCore/GatewayId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "GatewayId"
+          }
+        ],
+        "/RITAAgentCore/AgentAlias": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentAlias"
+          }
+        ],
+        "/RITAAgentCore/RuntimeEndpointArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "RuntimeEndpointArn"
+          }
+        ],
+        "/RITAAgentCore/AgentRuntimeId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentRuntimeId"
+          }
+        ],
+        "/RITAAgentCore/AgentRoleArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentRoleArn"
+          }
+        ],
+        "/RITAAgentCore/CognitoUserPoolId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CognitoUserPoolId"
+          }
+        ],
+        "/RITAAgentCore/CognitoUserPoolClientId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CognitoUserPoolClientId"
+          }
+        ],
+        "/RITAAgentCore/CognitoDomain": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CognitoDomain"
+          }
+        ],
+        "/RITAAgentCore/AgentIdParam/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentIdParam49DFB303"
+          }
+        ],
+        "/RITAAgentCore/AgentAliasParam/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentAliasParam80225814"
+          }
+        ],
+        "/RITAAgentCore/AgentInvokeArnParam/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentInvokeArnParam7BCE87F3"
+          }
+        ],
+        "/RITAAgentCore/AgentRuntimeIdParam/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentRuntimeIdParam8E31B12A"
+          }
+        ],
+        "/RITAAgentCore/AgentRoleArnParam/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentRoleArnParamACC962D2"
+          }
+        ],
+        "/RITAAgentCore/AgentRuntimeVersionParam/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "AgentRuntimeVersionParamC08DE2F7"
+          }
+        ],
+        "/RITAAgentCore/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/RITAAgentCore/Exports/Output{\"Ref\":\"RITAUserPool9382A62A\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefRITAUserPool9382A62A1D9D598A"
+          }
+        ],
+        "/RITAAgentCore/Exports/Output{\"Ref\":\"RITAUserPoolClientA4D7BD72\"}": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "ExportsOutputRefRITAUserPoolClientA4D7BD72C5A8B756"
+          }
+        ],
+        "/RITAAgentCore/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/RITAAgentCore/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "RITAAgentCore"
+    },
+    "RITAWorkflowAgent.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "RITAWorkflowAgent.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "RITAWorkflowAgent": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://542508027791/eu-central-1",
+      "properties": {
+        "templateFile": "RITAWorkflowAgent.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::542508027791:role/cdk-hnb659fds-deploy-role-542508027791-eu-central-1",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::542508027791:role/cdk-hnb659fds-cfn-exec-role-542508027791-eu-central-1",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-542508027791-eu-central-1/7739ddf80a7e49568ba6c795a5e4f0fffc80026cc77f1b32933743db21328b2e.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "RITAWorkflowAgent.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::542508027791:role/cdk-hnb659fds-lookup-role-542508027791-eu-central-1",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "RITAAgentCore",
+        "RITAWorkflowAgent.assets"
+      ],
+      "metadata": {
+        "/RITAWorkflowAgent/WorkflowAgentRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentRoleD59FB3D6"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentRoleDefaultPolicyD2923724"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentProvisionerFn/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentProvisionerFnServiceRoleAC00A7E0"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentProvisionerFn/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentProvisionerFnServiceRoleDefaultPolicy2F9A7664"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentProvisionerFn/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentProvisionerFn75D3AE41"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowRuntimeRepo/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowRuntimeRepo53D762AA"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentProvider/framework-onEvent/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentProviderframeworkonEventServiceRole86D6FF60"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentProvider/framework-onEvent/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentProviderframeworkonEventServiceRoleDefaultPolicyB71311C2"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentProvider/framework-onEvent/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentProviderframeworkonEvent68CF0660"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowRuntimeBuild/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowRuntimeBuildRole92537A05"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowRuntimeBuild/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowRuntimeBuildRoleDefaultPolicyD9E472D6"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowRuntimeBuild/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowRuntimeBuildA1D0C73C"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentResource/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentResource"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowGatewayId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowGatewayId"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentAlias": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentAlias"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowRuntimeEndpointArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowRuntimeEndpointArn"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentRuntimeId": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentRuntimeId"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentRoleArn": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentRoleArn"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentIdParam/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentIdParamF1EBE5E6"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentAliasParam/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentAliasParamCE944176"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentInvokeArnParam/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentInvokeArnParamC80A126F"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentRuntimeIdParam/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentRuntimeIdParam90862699"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentRoleArnParam/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentRoleArnParam553E2D67"
+          }
+        ],
+        "/RITAWorkflowAgent/WorkflowAgentRuntimeVersionParam/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "WorkflowAgentRuntimeVersionParamCC2ABED0"
+          }
+        ],
+        "/RITAWorkflowAgent/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/RITAWorkflowAgent/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/RITAWorkflowAgent/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "RITAWorkflowAgent"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

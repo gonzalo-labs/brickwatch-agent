@@ -1,0 +1,1132 @@
+{
+ "Resources": {
+  "RITAAgentCoreRoleC55009A6": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "bedrock.amazonaws.com"
+       }
+      },
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "bedrock-agentcore.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/RITAAgentCoreRole/Resource"
+   }
+  },
+  "RITAAgentCoreRoleDefaultPolicy15653478": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "ecr:GetAuthorizationToken",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchGetImage"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "AgentCoreRuntimeRepo8E7ED701",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "logs:DescribeLogGroups",
+        "logs:DescribeLogStreams"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "xray:PutTraceSegments",
+        "xray:PutTelemetryRecords"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:InvokeModelWithResponseStream",
+        "bedrock:Converse",
+        "bedrock:ConverseStream"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        "arn:aws:bedrock:eu-central-1::foundation-model/amazon.nova-pro-v1:0",
+        "arn:aws:bedrock:eu-central-1::foundation-model/amazon.nova-lite-v1:0",
+        "arn:aws:bedrock:eu-central-1::foundation-model/amazon.nova-micro-v1:0",
+        "arn:aws:bedrock:eu-central-1:542508027791:inference-profile/eu.amazon.nova-2-lite-v1:0",
+        "arn:aws:bedrock:eu-central-1::foundation-model/amazon.nova-2-lite-v1:0",
+        "arn:aws:bedrock:eu-north-1::foundation-model/amazon.nova-2-lite-v1:0",
+        "arn:aws:bedrock:eu-west-1::foundation-model/amazon.nova-2-lite-v1:0",
+        "arn:aws:bedrock:eu-west-3::foundation-model/amazon.nova-2-lite-v1:0",
+        "arn:aws:bedrock:eu-south-1::foundation-model/amazon.nova-2-lite-v1:0",
+        "arn:aws:bedrock:eu-south-2::foundation-model/amazon.nova-2-lite-v1:0"
+       ]
+      },
+      {
+       "Action": [
+        "ce:GetCostAndUsage",
+        "ce:GetDimensionValues",
+        "ce:GetReservationCoverage",
+        "ce:GetReservationPurchaseRecommendation",
+        "ce:GetReservationUtilization",
+        "ce:GetRightsizingRecommendation",
+        "ce:GetSavingsPlansUtilization",
+        "ce:GetSavingsPlansUtilizationDetails",
+        "ce:GetUsageReport",
+        "ce:GetAnomalies",
+        "ce:GetAnomalyMonitors",
+        "ce:GetAnomalySubscriptions"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "compute-optimizer:GetEC2InstanceRecommendations",
+        "compute-optimizer:GetEC2RecommendationProjectedMetrics",
+        "compute-optimizer:GetAutoScalingGroupRecommendations",
+        "compute-optimizer:GetEBSVolumeRecommendations",
+        "compute-optimizer:GetLambdaFunctionRecommendations",
+        "compute-optimizer:GetEnrollmentStatus",
+        "compute-optimizer:GetRecommendationSummaries"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "ec2:DescribeInstances",
+        "ec2:DescribeVolumes",
+        "ec2:DescribeSnapshots",
+        "rds:DescribeDBInstances",
+        "rds:DescribeDBClusters",
+        "lambda:ListFunctions",
+        "lambda:GetFunctionConfiguration",
+        "lambda:GetFunctionConcurrency",
+        "autoscaling:DescribeAutoScalingGroups",
+        "s3:ListAllMyBuckets",
+        "s3:GetBucketLocation",
+        "s3:GetLifecycleConfiguration",
+        "s3:GetBucketTagging",
+        "cloudwatch:GetMetricStatistics"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "RITAAgentCoreRoleDefaultPolicy15653478",
+    "Roles": [
+     {
+      "Ref": "RITAAgentCoreRoleC55009A6"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/RITAAgentCoreRole/DefaultPolicy/Resource"
+   }
+  },
+  "AgentCoreProvisionerFnServiceRole9D988185": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentCoreProvisionerFn/ServiceRole/Resource"
+   }
+  },
+  "AgentCoreProvisionerFnServiceRoleDefaultPolicy547FE586": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "bedrock-agentcore:CreateGateway",
+        "bedrock-agentcore:GetGateway",
+        "bedrock-agentcore:UpdateGateway",
+        "bedrock-agentcore:ListGateways",
+        "bedrock-agentcore:CreateGatewayTarget",
+        "bedrock-agentcore:ListGatewayTargets",
+        "bedrock-agentcore:CreateAgentRuntime",
+        "bedrock-agentcore:UpdateAgentRuntime",
+        "bedrock-agentcore:ListAgentRuntimes",
+        "bedrock-agentcore:CreateApiKeyCredentialProvider",
+        "bedrock-agentcore:GetApiKeyCredentialProvider",
+        "bedrock-agentcore:ListApiKeyCredentialProviders",
+        "bedrock-agentcore:CreateWorkloadIdentity",
+        "bedrock-agentcore:GetWorkloadIdentity",
+        "bedrock-agentcore:ListWorkloadIdentities",
+        "bedrock-agentcore:GetWorkloadIdentityDirectory",
+        "bedrock-agentcore:GetTokenVault",
+        "bedrock-agentcore:CreateTokenVault",
+        "bedrock-agentcore:SetTokenVaultCMK"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "bedrock-agentcore:*",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "secretsmanager:CreateSecret",
+        "secretsmanager:PutSecretValue",
+        "secretsmanager:TagResource",
+        "secretsmanager:DescribeSecret",
+        "secretsmanager:GetSecretValue",
+        "secretsmanager:UpdateSecret",
+        "secretsmanager:DeleteSecret"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": "iam:PassRole",
+       "Condition": {
+        "StringEquals": {
+         "iam:PassedToService": [
+          "bedrock.amazonaws.com",
+          "bedrock-agentcore.amazonaws.com"
+         ]
+        }
+       },
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "RITAAgentCoreRoleC55009A6",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "iam:CreateServiceLinkedRole",
+       "Effect": "Allow",
+       "Resource": "*"
+      },
+      {
+       "Action": [
+        "codebuild:StartBuild",
+        "codebuild:BatchGetBuilds"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "AgentCoreRuntimeBuild34A1C5A6",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "AgentCoreProvisionerFnServiceRoleDefaultPolicy547FE586",
+    "Roles": [
+     {
+      "Ref": "AgentCoreProvisionerFnServiceRole9D988185"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentCoreProvisionerFn/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "AgentCoreProvisionerFn186D4095": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-542508027791-eu-central-1",
+     "S3Key": "3afde65093fe0f10faa245c867b4f884ace5b74a45f130969715cad27998d085.zip"
+    },
+    "Handler": "handler.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "AgentCoreProvisionerFnServiceRole9D988185",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 600
+   },
+   "DependsOn": [
+    "AgentCoreProvisionerFnServiceRoleDefaultPolicy547FE586",
+    "AgentCoreProvisionerFnServiceRole9D988185"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentCoreProvisionerFn/Resource",
+    "aws:asset:path": "/Users/gonzalofernandez/gonzalo-labs/finops-agent/infra/custom-resources/agentcore_provisioner",
+    "aws:asset:is-bundled": true,
+    "aws:asset:property": "Code"
+   }
+  },
+  "AgentCoreRuntimeRepo8E7ED701": {
+   "Type": "AWS::ECR::Repository",
+   "Properties": {
+    "ImageScanningConfiguration": {
+     "ScanOnPush": true
+    },
+    "RepositoryName": "rita-agentcore-runtime-542508027791-eu-central-1"
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentCoreRuntimeRepo/Resource"
+   }
+  },
+  "AgentCoreProviderframeworkonEventServiceRoleD38C2E62": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentCoreProvider/framework-onEvent/ServiceRole/Resource"
+   }
+  },
+  "AgentCoreProviderframeworkonEventServiceRoleDefaultPolicyE3EC5B07": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "lambda:InvokeFunction",
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "AgentCoreProvisionerFn186D4095",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "AgentCoreProvisionerFn186D4095",
+             "Arn"
+            ]
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "AgentCoreProviderframeworkonEventServiceRoleDefaultPolicyE3EC5B07",
+    "Roles": [
+     {
+      "Ref": "AgentCoreProviderframeworkonEventServiceRoleD38C2E62"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentCoreProvider/framework-onEvent/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "AgentCoreProviderframeworkonEventDBBA6C09": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-542508027791-eu-central-1",
+     "S3Key": "d9861ea7a45affd23e47a614acb2fddc6e45c20a891284c958187dafbf9ee36b.zip"
+    },
+    "Description": "AWS CDK resource provider framework - onEvent (RITAAgentCore/AgentCoreProvider)",
+    "Environment": {
+     "Variables": {
+      "USER_ON_EVENT_FUNCTION_ARN": {
+       "Fn::GetAtt": [
+        "AgentCoreProvisionerFn186D4095",
+        "Arn"
+       ]
+      }
+     }
+    },
+    "Handler": "framework.onEvent",
+    "Role": {
+     "Fn::GetAtt": [
+      "AgentCoreProviderframeworkonEventServiceRoleD38C2E62",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs20.x",
+    "Timeout": 900
+   },
+   "DependsOn": [
+    "AgentCoreProviderframeworkonEventServiceRoleDefaultPolicyE3EC5B07",
+    "AgentCoreProviderframeworkonEventServiceRoleD38C2E62"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentCoreProvider/framework-onEvent/Resource",
+    "aws:asset:path": "asset.d9861ea7a45affd23e47a614acb2fddc6e45c20a891284c958187dafbf9ee36b",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "AgentCoreRuntimeBuildRoleC0423E9F": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "codebuild.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentCoreRuntimeBuild/Role/Resource"
+   }
+  },
+  "AgentCoreRuntimeBuildRoleDefaultPolicy62A072E8": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":logs:eu-central-1:542508027791:log-group:/aws/codebuild/",
+           {
+            "Ref": "AgentCoreRuntimeBuild34A1C5A6"
+           }
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":logs:eu-central-1:542508027791:log-group:/aws/codebuild/",
+           {
+            "Ref": "AgentCoreRuntimeBuild34A1C5A6"
+           },
+           ":*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "codebuild:CreateReportGroup",
+        "codebuild:CreateReport",
+        "codebuild:UpdateReport",
+        "codebuild:BatchPutTestCases",
+        "codebuild:BatchPutCodeCoverages"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::Join": [
+         "",
+         [
+          "arn:",
+          {
+           "Ref": "AWS::Partition"
+          },
+          ":codebuild:eu-central-1:542508027791:report-group/",
+          {
+           "Ref": "AgentCoreRuntimeBuild34A1C5A6"
+          },
+          "-*"
+         ]
+        ]
+       }
+      },
+      {
+       "Action": [
+        "s3:GetObject*",
+        "s3:GetBucket*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":s3:::cdk-hnb659fds-assets-542508027791-eu-central-1"
+          ]
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           "arn:",
+           {
+            "Ref": "AWS::Partition"
+           },
+           ":s3:::cdk-hnb659fds-assets-542508027791-eu-central-1/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchGetImage",
+        "ecr:CompleteLayerUpload",
+        "ecr:UploadLayerPart",
+        "ecr:InitiateLayerUpload",
+        "ecr:PutImage"
+       ],
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "AgentCoreRuntimeRepo8E7ED701",
+         "Arn"
+        ]
+       }
+      },
+      {
+       "Action": "ecr:GetAuthorizationToken",
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "AgentCoreRuntimeBuildRoleDefaultPolicy62A072E8",
+    "Roles": [
+     {
+      "Ref": "AgentCoreRuntimeBuildRoleC0423E9F"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentCoreRuntimeBuild/Role/DefaultPolicy/Resource"
+   }
+  },
+  "AgentCoreRuntimeBuild34A1C5A6": {
+   "Type": "AWS::CodeBuild::Project",
+   "Properties": {
+    "Artifacts": {
+     "Type": "NO_ARTIFACTS"
+    },
+    "Cache": {
+     "Type": "NO_CACHE"
+    },
+    "EncryptionKey": "alias/aws/s3",
+    "Environment": {
+     "ComputeType": "BUILD_GENERAL1_SMALL",
+     "EnvironmentVariables": [
+      {
+       "Name": "REPO_URI",
+       "Type": "PLAINTEXT",
+       "Value": {
+        "Fn::Join": [
+         "",
+         [
+          {
+           "Fn::Select": [
+            4,
+            {
+             "Fn::Split": [
+              ":",
+              {
+               "Fn::GetAtt": [
+                "AgentCoreRuntimeRepo8E7ED701",
+                "Arn"
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          ".dkr.ecr.",
+          {
+           "Fn::Select": [
+            3,
+            {
+             "Fn::Split": [
+              ":",
+              {
+               "Fn::GetAtt": [
+                "AgentCoreRuntimeRepo8E7ED701",
+                "Arn"
+               ]
+              }
+             ]
+            }
+           ]
+          },
+          ".",
+          {
+           "Ref": "AWS::URLSuffix"
+          },
+          "/",
+          {
+           "Ref": "AgentCoreRuntimeRepo8E7ED701"
+          }
+         ]
+        ]
+       }
+      },
+      {
+       "Name": "IMAGE_TAG",
+       "Type": "PLAINTEXT",
+       "Value": "9ba31c6419e8d72704a19fa58cd0b82cbb968625d087d75a5e2e94fa6fe2ccd2"
+      },
+      {
+       "Name": "SRC_BUCKET",
+       "Type": "PLAINTEXT",
+       "Value": "cdk-hnb659fds-assets-542508027791-eu-central-1"
+      },
+      {
+       "Name": "SRC_KEY",
+       "Type": "PLAINTEXT",
+       "Value": "9ba31c6419e8d72704a19fa58cd0b82cbb968625d087d75a5e2e94fa6fe2ccd2.zip"
+      },
+      {
+       "Name": "AWS_REGION",
+       "Type": "PLAINTEXT",
+       "Value": "eu-central-1"
+      }
+     ],
+     "Image": "aws/codebuild/amazonlinux2-x86_64-standard:5.0",
+     "ImagePullCredentialsType": "CODEBUILD",
+     "PrivilegedMode": true,
+     "Type": "LINUX_CONTAINER"
+    },
+    "ServiceRole": {
+     "Fn::GetAtt": [
+      "AgentCoreRuntimeBuildRoleC0423E9F",
+      "Arn"
+     ]
+    },
+    "Source": {
+     "BuildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"pre_build\": {\n      \"commands\": [\n        \"echo Logging into ECR\",\n        \"aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $REPO_URI\",\n        \"docker buildx create --use --name xbuilder || true\",\n        \"aws s3 cp s3://$SRC_BUCKET/$SRC_KEY src.zip\",\n        \"mkdir -p src && unzip -q src.zip -d src && cd src\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"docker buildx build --platform linux/arm64 -t $REPO_URI:$IMAGE_TAG --push .\"\n      ]\n    }\n  },\n  \"artifacts\": {\n    \"files\": [\n      \"**/*\"\n    ],\n    \"discard-paths\": \"yes\"\n  }\n}",
+     "Type": "NO_SOURCE"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentCoreRuntimeBuild/Resource"
+   }
+  },
+  "RITAUserPool9382A62A": {
+   "Type": "AWS::Cognito::UserPool",
+   "Properties": {
+    "AccountRecoverySetting": {
+     "RecoveryMechanisms": [
+      {
+       "Name": "verified_phone_number",
+       "Priority": 1
+      },
+      {
+       "Name": "verified_email",
+       "Priority": 2
+      }
+     ]
+    },
+    "AdminCreateUserConfig": {
+     "AllowAdminCreateUserOnly": true
+    },
+    "AutoVerifiedAttributes": [
+     "email"
+    ],
+    "EmailVerificationMessage": "The verification code to your new account is {####}",
+    "EmailVerificationSubject": "Verify your new account",
+    "SmsVerificationMessage": "The verification code to your new account is {####}",
+    "UsernameAttributes": [
+     "email"
+    ],
+    "VerificationMessageTemplate": {
+     "DefaultEmailOption": "CONFIRM_WITH_CODE",
+     "EmailMessage": "The verification code to your new account is {####}",
+     "EmailSubject": "Verify your new account",
+     "SmsMessage": "The verification code to your new account is {####}"
+    }
+   },
+   "UpdateReplacePolicy": "Retain",
+   "DeletionPolicy": "Retain",
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/RITAUserPool/Resource"
+   }
+  },
+  "RITAUserPoolRITACognitoDomainB83BD9B0": {
+   "Type": "AWS::Cognito::UserPoolDomain",
+   "Properties": {
+    "Domain": "rita-542508027791-eu-central-1",
+    "UserPoolId": {
+     "Ref": "RITAUserPool9382A62A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/RITAUserPool/RITACognitoDomain/Resource"
+   }
+  },
+  "RITAUserPoolClientA4D7BD72": {
+   "Type": "AWS::Cognito::UserPoolClient",
+   "Properties": {
+    "AllowedOAuthFlows": [
+     "implicit",
+     "code"
+    ],
+    "AllowedOAuthFlowsUserPoolClient": true,
+    "AllowedOAuthScopes": [
+     "profile",
+     "phone",
+     "email",
+     "openid",
+     "aws.cognito.signin.user.admin"
+    ],
+    "CallbackURLs": [
+     "https://example.com"
+    ],
+    "GenerateSecret": false,
+    "SupportedIdentityProviders": [
+     "COGNITO"
+    ],
+    "UserPoolId": {
+     "Ref": "RITAUserPool9382A62A"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/RITAUserPoolClient/Resource"
+   }
+  },
+  "AgentCoreResource": {
+   "Type": "AWS::CloudFormation::CustomResource",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "AgentCoreProviderframeworkonEventDBBA6C09",
+      "Arn"
+     ]
+    },
+    "AgentName": "RITA",
+    "SystemPrompt": "You are RITA, a cost optimization assistant.",
+    "InferenceModel": "arn:aws:bedrock:eu-central-1:542508027791:inference-profile/eu.amazon.nova-2-lite-v1:0",
+    "AgentRoleArn": {
+     "Fn::GetAtt": [
+      "RITAAgentCoreRoleC55009A6",
+      "Arn"
+     ]
+    },
+    "ApiUrl": "https://example.execute-api.eu-west-1.amazonaws.com/prod",
+    "EnableLogging": true,
+    "LogLevel": "DEBUG",
+    "EnableTracing": true,
+    "RuntimeBuildProject": {
+     "Ref": "AgentCoreRuntimeBuild34A1C5A6"
+    },
+    "RuntimeRepoUri": {
+     "Fn::Join": [
+      "",
+      [
+       {
+        "Fn::Select": [
+         4,
+         {
+          "Fn::Split": [
+           ":",
+           {
+            "Fn::GetAtt": [
+             "AgentCoreRuntimeRepo8E7ED701",
+             "Arn"
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       ".dkr.ecr.",
+       {
+        "Fn::Select": [
+         3,
+         {
+          "Fn::Split": [
+           ":",
+           {
+            "Fn::GetAtt": [
+             "AgentCoreRuntimeRepo8E7ED701",
+             "Arn"
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       ".",
+       {
+        "Ref": "AWS::URLSuffix"
+       },
+       "/",
+       {
+        "Ref": "AgentCoreRuntimeRepo8E7ED701"
+       }
+      ]
+     ]
+    },
+    "RuntimeImageTag": "9ba31c6419e8d72704a19fa58cd0b82cbb968625d087d75a5e2e94fa6fe2ccd2",
+    "RuntimeSrcBucket": "cdk-hnb659fds-assets-542508027791-eu-central-1",
+    "RuntimeSrcKey": "9ba31c6419e8d72704a19fa58cd0b82cbb968625d087d75a5e2e94fa6fe2ccd2.zip",
+    "AuthorizerType": "CUSTOM_JWT",
+    "JwtDiscoveryUrl": {
+     "Fn::Join": [
+      "",
+      [
+       "https://cognito-idp.eu-central-1.amazonaws.com/",
+       {
+        "Ref": "RITAUserPool9382A62A"
+       },
+       "/.well-known/openid-configuration"
+      ]
+     ]
+    },
+    "JwtAllowedAudience": [
+     {
+      "Ref": "RITAUserPoolClientA4D7BD72"
+     }
+    ],
+    "Tools": [
+     {
+      "name": "Ping",
+      "method": "GET",
+      "path": "https://example.execute-api.eu-west-1.amazonaws.com/prod"
+     }
+    ],
+    "Nonce": "v2"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentCoreResource/Default"
+   }
+  },
+  "AgentIdParam49DFB303": {
+   "Type": "AWS::SSM::Parameter",
+   "Properties": {
+    "Name": "/rita/agentcore/id",
+    "Type": "String",
+    "Value": {
+     "Fn::GetAtt": [
+      "AgentCoreResource",
+      "GatewayId"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentIdParam/Resource"
+   }
+  },
+  "AgentAliasParam80225814": {
+   "Type": "AWS::SSM::Parameter",
+   "Properties": {
+    "Name": "/rita/agentcore/alias",
+    "Type": "String",
+    "Value": {
+     "Fn::GetAtt": [
+      "AgentCoreResource",
+      "AgentAlias"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentAliasParam/Resource"
+   }
+  },
+  "AgentInvokeArnParam7BCE87F3": {
+   "Type": "AWS::SSM::Parameter",
+   "Properties": {
+    "Name": "/rita/agentcore/invoke-arn",
+    "Type": "String",
+    "Value": {
+     "Fn::GetAtt": [
+      "AgentCoreResource",
+      "RuntimeEndpointArn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentInvokeArnParam/Resource"
+   }
+  },
+  "AgentRuntimeIdParam8E31B12A": {
+   "Type": "AWS::SSM::Parameter",
+   "Properties": {
+    "Name": "/rita/agentcore/runtime-id",
+    "Type": "String",
+    "Value": {
+     "Fn::GetAtt": [
+      "AgentCoreResource",
+      "AgentRuntimeId"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentRuntimeIdParam/Resource"
+   }
+  },
+  "AgentRoleArnParamACC962D2": {
+   "Type": "AWS::SSM::Parameter",
+   "Properties": {
+    "Name": "/rita/agentcore/role-arn",
+    "Type": "String",
+    "Value": {
+     "Fn::GetAtt": [
+      "RITAAgentCoreRoleC55009A6",
+      "Arn"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentRoleArnParam/Resource"
+   }
+  },
+  "AgentRuntimeVersionParamC08DE2F7": {
+   "Type": "AWS::SSM::Parameter",
+   "Properties": {
+    "Name": "/rita/agentcore/runtime-version",
+    "Type": "String",
+    "Value": {
+     "Fn::GetAtt": [
+      "AgentCoreResource",
+      "AgentRuntimeVersion"
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/AgentRuntimeVersionParam/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/01QS2/CMAz+LdyDx0PTzoNp11VMO6OQesw0iVGcbEJV//uSlAInfw+/V7B8XsBipv9kbtpubukA/WfUplNZ2vekHfQ7tqi2377Ghi2ZS6EjGpTV7tBq6N+TN5HYF2/Cg5L1XotgFHgtIXPYJNNh3GhBhSbk/nhmocihtr2zQRlu8ZDIttA3gU9oYh08wmIffc6E/kswNMy2uDc8gTd2mvyjdVUmurWEPj4mjEpeXlx5RyB/bHTQDiOGusFEhkHtUDgFg6rel393zNnKJIns9uFqCuSlf6kt5dW5VdWL7/gjxXPKk5tL/GH/tIblCl5mJyGah+QjOYTdGP8B0hQ7KLsBAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "RITAAgentCore/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "GatewayId": {
+   "Value": {
+    "Fn::GetAtt": [
+     "AgentCoreResource",
+     "GatewayId"
+    ]
+   }
+  },
+  "AgentAlias": {
+   "Value": {
+    "Fn::GetAtt": [
+     "AgentCoreResource",
+     "AgentAlias"
+    ]
+   }
+  },
+  "RuntimeEndpointArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "AgentCoreResource",
+     "RuntimeEndpointArn"
+    ]
+   }
+  },
+  "AgentRuntimeId": {
+   "Value": {
+    "Fn::GetAtt": [
+     "AgentCoreResource",
+     "AgentRuntimeId"
+    ]
+   }
+  },
+  "AgentRoleArn": {
+   "Value": {
+    "Fn::GetAtt": [
+     "RITAAgentCoreRoleC55009A6",
+     "Arn"
+    ]
+   }
+  },
+  "CognitoUserPoolId": {
+   "Value": {
+    "Ref": "RITAUserPool9382A62A"
+   }
+  },
+  "CognitoUserPoolClientId": {
+   "Value": {
+    "Ref": "RITAUserPoolClientA4D7BD72"
+   }
+  },
+  "CognitoDomain": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      {
+       "Ref": "RITAUserPoolRITACognitoDomainB83BD9B0"
+      },
+      ".auth.eu-central-1.amazoncognito.com"
+     ]
+    ]
+   }
+  },
+  "ExportsOutputRefRITAUserPool9382A62A1D9D598A": {
+   "Value": {
+    "Ref": "RITAUserPool9382A62A"
+   },
+   "Export": {
+    "Name": "RITAAgentCore:ExportsOutputRefRITAUserPool9382A62A1D9D598A"
+   }
+  },
+  "ExportsOutputRefRITAUserPoolClientA4D7BD72C5A8B756": {
+   "Value": {
+    "Ref": "RITAUserPoolClientA4D7BD72"
+   },
+   "Export": {
+    "Name": "RITAAgentCore:ExportsOutputRefRITAUserPoolClientA4D7BD72C5A8B756"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}

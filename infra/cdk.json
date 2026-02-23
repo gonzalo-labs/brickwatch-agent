@@ -1,0 +1,9 @@
+{
+  "app": "python3 app.py",
+  "context": {
+    "@aws-cdk/custom-resources:installLatestAwsSdkDefault": false,
+    "enableCognito": "false",
+    "agentcoreEndpoint": "",
+    "apiUrl": "https://example.execute-api.eu-west-1.amazonaws.com/prod"
+  }
+}

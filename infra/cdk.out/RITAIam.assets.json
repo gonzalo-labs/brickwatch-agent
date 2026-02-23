@@ -1,0 +1,20 @@
+{
+  "version": "36.0.0",
+  "files": {
+    "a00a845389016d3ad52bfab1002f4dee7f60c1b0dc7c405fec173d4660217ee2": {
+      "source": {
+        "path": "RITAIam.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "542508027791-eu-central-1": {
+          "bucketName": "cdk-hnb659fds-assets-542508027791-eu-central-1",
+          "objectKey": "a00a845389016d3ad52bfab1002f4dee7f60c1b0dc7c405fec173d4660217ee2.json",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::542508027791:role/cdk-hnb659fds-file-publishing-role-542508027791-eu-central-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}
