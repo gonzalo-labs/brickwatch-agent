@@ -24,6 +24,7 @@ class UiHostingStack(Stack):
         **kwargs,
     ) -> None:
         super().__init__(scope, construct_id, **kwargs)
+        normalized_api_url = api_url.rstrip("/")
 
         site_bucket = s3.Bucket(
             self,
@@ -165,7 +166,7 @@ class UiHostingStack(Stack):
 </body></html>"""
 
         html = (
-            html_template.replace("__API_URL__", json.dumps(api_url))
+            html_template.replace("__API_URL__", json.dumps(normalized_api_url))
             .replace("__COGNITO_DOMAIN__", json.dumps(cognito_domain))
             .replace("__CLIENT_ID__", json.dumps(user_pool_client_id))
         )

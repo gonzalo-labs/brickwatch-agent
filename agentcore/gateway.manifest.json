@@ -24,7 +24,7 @@
       "name": "trigger_automation",
       "method": "POST",
       "url": "/v1/automation",
-      "description": "Run automated FinOps workflows such as rightsizing and cost actions. JSON body: {action, context, schedule?}."
+      "description": "Run automated FinOps workflows such as rightsizing and cost actions. JSON body: {action, context, schedule?}. Response includes execution metadata."
     },
     {
       "name": "get_budget_alerts",

@@ -5,7 +5,7 @@ import logging
 import os
 from typing import Any, Dict
 
-# Version: 2.1.0 - Button label updated to "Execute Recommendations"
+# Version: 2.1.1 - Minor maintenance updates
 
 from bedrock_agentcore import BedrockAgentCoreApp, RequestContext
 from strands import Agent, tool

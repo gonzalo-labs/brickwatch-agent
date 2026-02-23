@@ -41,6 +41,7 @@ _Architecture diagram omitted in this repository snapshot._
 - `BrickwatchWorkflowAgent`: workflow runtime (reuses Cognito from analysis stack) + SSM params under `/rita/workflow-agent/*`.
 - `BrickwatchUi` (optional): CloudFront + private S3 static site; requires API URL and Cognito context.
 - `BrickwatchSageMaker` (optional): only deployed when `sagemaker_artifacts/` exists.
+  - Required UI context keys: `uiApiUrl`, `uiCognitoDomain`, `uiUserPoolClientId`, `uiUserPoolId`.
 
 ### Request Flows
 
