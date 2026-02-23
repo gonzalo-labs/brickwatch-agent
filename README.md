@@ -23,7 +23,7 @@ Brickwatch runs as a 5-layer system:
 
 ### Architecture Diagram
 
-![Brickwatch Architecture](architecture/architecture_diagram.PNG)
+_Architecture diagram omitted in this repository snapshot._
 
 ### Runtime Components
 
